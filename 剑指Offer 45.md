@@ -42,7 +42,7 @@ class Solution:
         return res
 ```
 
-`办法2: 还是就是做个排序， 排序规则就是 3 和 30 比较的时候  把两个数字长度加到一样， 3 和 30比较 =》 33 和 30 比较， 例子35、354、356，35补5是对的，即补最后一位,    这个办法不对，提交代码用例卡在219条，一共222条用例`
+`办法2: 还是就是做个排序， 排序规则就是 3 和 30 比较的时候  把两个数字长度加到一样， 3 和 30比较 =》 33 和 30 比较， 例子35、354、356，35补5是对的，即补最后一位,  这个办法不对，提交代码用例卡在219条，一共222条用例，补第一位再加条件控制两数补位后相等的情况，最后一个用例没过。不纠结了，这个代码写的太长了，一定不是最优解`
 ```python3
 class Solution:
     def minNumber(self, nums: List[int]) -> str:
@@ -56,12 +56,12 @@ class Solution:
                 ant = len(str(nums[i]))
                 ans = len(str(nums[j]))
                 if ant < ans:
-                    s = stick[int(str(nums[i])[ant-1])][0:ans-ant]
+                    s = stick[int(str(nums[i])[0])][0:ans-ant]
                     si = int(str(nums[i]) + s)
                     sj = nums[j]
-                    print(s, si,sj)
+                    # print(s, si,sj)
                 elif ant > ans:
-                    s = stick[int(str(nums[j])[ans-1])][0:ant-ans]
+                    s = stick[int(str(nums[j])[0])][0:ant-ans]
                     si = nums[i]
                     sj = int(str(nums[j]) + s)
                     
@@ -73,10 +73,15 @@ class Solution:
                     node = nums[i]
                     nums[i] = nums[j]
                     nums[j] = node
-                
+                elif si == sj:
+                    node = max(nums[i],nums[j])
+                    node2 = min(nums[i],nums[j])
+                    nums[i] = node
+                    nums[j] = node2
+                <!-- print(nums[i],nums[j]) -->
+         
         res = ""
         for num in nums:
             res = res + str(num)
         return res
-
 ```
