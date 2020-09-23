@@ -9,12 +9,12 @@ def minNumber(nums):
                 ant = len(str(nums[i]))
                 ans = len(str(nums[j]))
                 if ant < ans:
-                    s = stick[int(str(nums[i])[ant-1])][0:ans-ant]
+                    s = stick[int(str(nums[i])[0])][0:ans-ant]
                     si = int(str(nums[i]) + s)
                     sj = nums[j]
                     print(s, si,sj)
                 elif ant > ans:
-                    s = stick[int(str(nums[j])[ans-1])][0:ant-ans]
+                    s = stick[int(str(nums[j])[0])][0:ant-ans]
                     si = nums[i]
                     sj = int(str(nums[j]) + s)
                     
@@ -38,5 +38,6 @@ print(a)
 
 
 
-c ="1399439856075703697382478249389609"
-print(a == c)
+e = "1399439856075703697382482479389609"
+d = "1399439856075703697382482479389609"
+c = "1399439856075703697382478249389609"

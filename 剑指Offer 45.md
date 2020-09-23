@@ -42,4 +42,41 @@ class Solution:
         return res
 ```
 
-`办法2: 还是就是做个排序， 排序规则就是 3 和 30 比较的时候  把两个数字长度加到一样， 3 和 30比较 =》 33 和 30 比较， 例子35、354、356，35补5是对的，即补最后一位`
+`办法2: 还是就是做个排序， 排序规则就是 3 和 30 比较的时候  把两个数字长度加到一样， 3 和 30比较 =》 33 和 30 比较， 例子35、354、356，35补5是对的，即补最后一位,    这个办法不对，提交代码用例卡在219条，一共222条用例`
+```python3
+class Solution:
+    def minNumber(self, nums: List[int]) -> str:
+        stick = ['0000000000','1111111111','2222222222','3333333333','4444444444','5555555555','6666666666','7777777777','8888888888','9999999999']
+        lnums = len(nums)
+        for i in range(lnums):
+            for j in range(i+1,lnums):
+                s = ""
+                si = 0
+                sj = 0
+                ant = len(str(nums[i]))
+                ans = len(str(nums[j]))
+                if ant < ans:
+                    s = stick[int(str(nums[i])[ant-1])][0:ans-ant]
+                    si = int(str(nums[i]) + s)
+                    sj = nums[j]
+                    print(s, si,sj)
+                elif ant > ans:
+                    s = stick[int(str(nums[j])[ans-1])][0:ant-ans]
+                    si = nums[i]
+                    sj = int(str(nums[j]) + s)
+                    
+                else:
+                    si = nums[i]
+                    sj = nums[j]
+                  
+                if si > sj:
+                    node = nums[i]
+                    nums[i] = nums[j]
+                    nums[j] = node
+                
+        res = ""
+        for num in nums:
+            res = res + str(num)
+        return res
+
+```
