@@ -1,24 +1,29 @@
-def partition(nums, begin: int, end: int) -> int:
-    pivot = nums[end]
-    index = begin
-    for i in range(begin, end):
-        sant = str(nums[i]) + str(pivot)
-        sans = str(pivot) + str(nums[i])
-        if int(sant) < int(sans):
-        # if nums[i] > pivot:
-            nums[i], nums[index] = nums[index], nums[i]
-            index = index + 1
-    nums[index], nums[end] =  nums[end], nums[index]
-    return index
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-def nsort(nums, begin: int, end: int):
-        if begin < end :
-            index = partition(nums, begin, end)
-            nsort(nums, begin, index - 1)
-            nsort(nums, index + 1, end)
+class Solution:
+    def buildTree(self, preorder, inorder) -> TreeNode:
+        if not preorder or not inorder:
+            return None
+        print(preorder)
+        node = TreeNode(preorder.pop(0))
+        ans = inorder.index(node.val)
+        pant = preorder.index(inorder[ans-1])
+        iant = preorder.index(inorder[ans-1])+1
+        print(pant, iant, preorder, 11111)
+        node.left = self.buildTree(preorder[ 0: pant], inorder[ : ans])
+        node.right = self.buildTree(preorder[iant+1: ], inorder[ans+1 : ])
+        return node
 
 
 
-a = [3,30,34,5,9]
-nsort(a,0,4)
-print(a)
+
+a = Solution()
+b = [3,9,20,15,7]
+c = [9,3,15,20,7]
+d = a.buildTree(b,c)
+print(d)
