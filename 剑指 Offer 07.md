@@ -26,7 +26,7 @@
 0 <= 节点个数 <= 5000
 ```
 
-#####题解：
+##### 题解：
 `考察对二叉树前中数组的排列规律`
 ```python3
 # Definition for a binary tree node.
