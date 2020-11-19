@@ -7,3 +7,21 @@
 
 限制：
 0 <= 链表长度 <= 10000
+
+#### 题解
+```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        ls = []
+        while head:
+            ls.append(head.val)
+            head = head.next
+        ls.reverse()
+        return ls
+```
